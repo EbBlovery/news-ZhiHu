@@ -9,7 +9,7 @@ export function getSlider(){
      })
 }
 export function getNews(){
-	 return axios(`${url}/api/3/news/hot`).then((res)=>{
+	 return axios(`${url}/api/4/news/hot`).then((res)=>{
 	 	return res.data.recent
 	 })
 }
@@ -28,4 +28,5 @@ export function getWheel(id){
      return axios(`${url}/api/4/news/latest`).then((res)=>{
           return res.data.top_stories
      })
+
 }

@@ -1,5 +1,23 @@
 <template>
 	<div>
-		信息也
+		<ul>
+			<li>
+				
+			</li>
+		</ul>
 	</div>
 </template>
+
+<script>
+	export default {
+		data(){
+			return {
+
+			}
+		},
+		methods:{
+
+		}
+	}
+</script>
+
