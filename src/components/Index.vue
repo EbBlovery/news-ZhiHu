@@ -17,7 +17,6 @@
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-         
       </div>
   </div>
 </template>
@@ -39,6 +38,11 @@ export default {
           this.$router.push({
              path: '/' + tab
           })
+          if(tab=='main'){
+              var arr=[]
+              arr.name='首页'
+              this.$store.commit('INDEXLIST',arr)
+          }
       },
       showList(){
           this.$store.commit('SHOWLIST')
@@ -106,7 +110,7 @@ export default {
         }
      }
      .main-body{
-        padding-top:120px;
+        padding-top:98px;
      }
   }
 </style>

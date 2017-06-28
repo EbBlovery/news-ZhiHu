@@ -1,10 +1,10 @@
 <template>
 	<div class="indexList">
 		<div class="whell">
-			
+			<Wheel></Wheel>
 		</div>
 		<ul class="list-bar">
-			<li class="list-info" v-for="item in indexList">
+			<li @click="addNews(item)" class="list-info" v-for="item in indexList">
 				<el-row>
 				    <el-col :span="18"><p>{{item.title}}</p></el-col>
 					<el-col v-show="item.thumbnail" :span="6"><img width="70px" height="70px" :src="item.thumbnail"></el-col>
@@ -15,24 +15,53 @@
 </template>
 
 <script>
+    import Wheel from './Wheel.vue'
+    import {getNews} from '../api/axios.js'
 	export default {
 		data() {
 			return {
-
+                 indexList:[]
 			}
 		},
 		computed:{
-			indexList(){
-				console.log(this.$store.state.indexList)
-				return this.$store.state.indexList
-			}
-		}
+			// indexList(){
+			// 	return this.$store.state.indexList
+			// }
+		},
+		methods:{
+            get(){
+               getNews().then(res=>{
+                   this.indexList = res
+               })
+            },
+            addNews(val){
+                var arr=[]
+                var id=val.news_id
+                arr.id=id
+                arr.img=val.thumbnail
+                arr.title=val.title
+                this.$router.push({
+                    path:'/newsThub',
+                    query:{
+                        id
+                    }
+                })
+                this.$store.commit('NEWSTHUB',arr)
+            }
+		},
+        created(){
+            this.get()
+        },
+        components:{
+        	Wheel
+        }
 	}
 </script>
 
 <style lang="less" scoped>
 	@import '../style/main.less';
     .indexList{
+    	 background:#F2F2F2;
          width:100%;
          height:100%;
          position:relative;

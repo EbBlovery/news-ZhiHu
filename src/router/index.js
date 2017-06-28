@@ -21,8 +21,14 @@ export default new Router({
            }
         ]
     },{
-    	path: '*',
-    	redirect:'/main'
+    	  path: '*',
+    	  redirect:'/main'
+    },{
+        path:'/newsThub',
+        component: require('../views/newsThub')
+    },{
+        path:'/handlein',
+        component: require('../views/handleIn')
     }
   ]
 })

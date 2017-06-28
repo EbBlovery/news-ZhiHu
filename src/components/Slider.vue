@@ -6,6 +6,7 @@
 	  	 	   <li class="slider-bar">
 	  	 	   	   <div class="slider-head">
 				  	    <img width="100px" height="100px" src="../assets/logo.png">
+				  	    <p @click="handleIn()">请登录</p>
 				   </div>
 	  	 	   </li>
 	           <li @click="handleClickTo('首页')" class="slider-list">
@@ -78,6 +79,10 @@
                this.$router.push('/index')
                this.$store.commit('INDEXLIST',arr)
 
+           },
+           handleIn(){
+           	   this.$router.push('/handlein')
+           	   this.$store.commit('INDEXLIST')
            }
 		},
 		computed:{

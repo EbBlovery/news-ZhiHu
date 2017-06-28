@@ -24,7 +24,7 @@ export function getTitle(id){
      	  return res.data
      })
 }
-export function getWheel(id){
+export function getWheel(){
      return axios(`${url}/api/4/news/latest`).then((res)=>{
           return res.data.top_stories
      })

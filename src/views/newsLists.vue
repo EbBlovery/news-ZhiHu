@@ -5,7 +5,7 @@
 	    	<p>{{arrInfor.description}}</p>
 	    </div>
 		<ul class="infor-list">
-			<li class="list-bar" v-for="item in arrList">
+			<li @click="handleNews(item)" class="list-bar" v-for="item in arrList">
 				<el-row>
 				    <el-col :span="item.images?18:24"><p>{{item.title}}</p></el-col>
 					<el-col v-show="item.images" :span="6"><img width="70px" height="70px" :src="item.images"></el-col>
@@ -23,7 +23,25 @@
                  images:'../assets/logo.png'
 			}
 		},
-		computed:{
+        methods:{
+            handleNews(val){
+                var arr=[]
+                var id=val.id
+                arr.id=id
+                if(val.images){
+                    arr.img=val.images[0]
+                }
+                arr.title=val.title
+                this.$router.push({
+                    path:'/newsThub',
+                    query:{
+                        id
+                    }
+                })
+                this.$store.commit('NEWSTHUB',arr)
+            }
+        },
+        computed:{
 			...mapGetters([
                 'arrList',
                 'arrInfor'

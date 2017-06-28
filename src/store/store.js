@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {getContent,getNews} from '../api/axios.js'
+import {getContent,getNews,getTitle} from '../api/axios.js'
 
 
 
@@ -11,12 +11,15 @@ const store = new Vuex.Store({
         isshow:false,
         arrList:[],
         indexList:[],
-        arrInfor:[]
+        arrInfor:[],
+        indexInfo:[],
+        newsthub:[]
 	},
 	getters:{
 		arrList: state=>state.arrList,
 		indexList: state=> state.indexList,
-		arrInfor: state=> state.arrInfor
+		arrInfor: state=> state.arrInfor,
+        newsthub: state=> state.newsthub
 	},
 	mutations:{
         SHOWLIST(state){
@@ -37,6 +40,17 @@ const store = new Vuex.Store({
             	state.arrInfor=arr
             }
             state.isshow=false
+        },
+        NEWSTHUB(state,arr){
+            getTitle(arr.id).then(res=>{
+                const css = res.css
+                var csslist = css.map(item=>{
+                    return `<link rel="stylesheet" href="${item}">`
+                })
+                var body = res.body
+                state.newsthub = body + csslist
+            })
+            state.indexInfo=arr
         }
 	},
 	actions:{
